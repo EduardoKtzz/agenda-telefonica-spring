@@ -22,4 +22,9 @@ public class ContatoService {
         return repositorio.findById(id).orElseThrow(() -> new RuntimeException("Contato não encontrado"));
     }
 
+    //Criar contato
+    public Contato inserir(Contato contato) {
+        return repositorio.save(contato);
+    }
+
 }
