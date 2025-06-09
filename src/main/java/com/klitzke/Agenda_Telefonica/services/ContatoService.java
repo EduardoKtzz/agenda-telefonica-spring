@@ -4,7 +4,6 @@ import com.klitzke.Agenda_Telefonica.entities.Contato;
 import com.klitzke.Agenda_Telefonica.repository.ContatoRepositorio;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
-
 import java.util.List;
 
 @Service
@@ -16,6 +15,11 @@ public class ContatoService {
     //Buscar todos os contatos no sistema
     public List<Contato> encontrarTodosContatos() {
         return repositorio.findAll();
+    }
+
+    //Buscar por "ID"
+    public Contato encontrarPorId(Long id) {
+        return repositorio.findById(id).orElseThrow(() -> new RuntimeException("Contato não encontrado"));
     }
 
 }

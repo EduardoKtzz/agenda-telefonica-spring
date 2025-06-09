@@ -5,6 +5,7 @@ import com.klitzke.Agenda_Telefonica.services.ContatoService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 import java.util.List;
@@ -23,4 +24,12 @@ public class ContatoController {
         List<Contato> contatos = service.encontrarTodosContatos();
         return ResponseEntity.ok().body(contatos);
     }
+
+    //GET para encontrar pelo "id"
+    @GetMapping(value = "/{id}")
+    public ResponseEntity<Contato> buscarPorId(@PathVariable Long id) {
+        Contato contato = service.encontrarPorId(id);
+        return ResponseEntity.ok().body(contato);
+    }
+
 }
