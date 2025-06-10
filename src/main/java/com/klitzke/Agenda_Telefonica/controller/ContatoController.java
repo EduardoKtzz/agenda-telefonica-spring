@@ -48,4 +48,10 @@ public class ContatoController {
         return ResponseEntity.noContent().build();
     }
 
+    //PUT para atualizar usuarios
+    @PutMapping(value = "/{id}")
+    public ResponseEntity<Contato> atualizarContato(@PathVariable Long id, @RequestBody Contato contato) {
+        contato = service.atualizar(id, contato);
+        return ResponseEntity.ok().body(contato);
+    }
 }

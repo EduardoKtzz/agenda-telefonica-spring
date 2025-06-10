@@ -34,5 +34,15 @@ public class ContatoService {
         repositorio.deleteById(id);
     }
 
+    //Atualizar usuarios
+    public Contato atualizar(Long id, Contato contato) {
+        Contato entidade = repositorio.findById(id).orElseThrow(() -> new ContatoNotFoundException(id));
+
+        entidade.setNome(contato.getNome());
+        entidade.setNumero(contato.getNumero());
+        entidade.setContatoTipo(contato.getContatoTipo());
+
+        return repositorio.save(entidade);
+    }
 }
 
