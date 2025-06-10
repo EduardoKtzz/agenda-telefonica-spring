@@ -34,9 +34,16 @@ public class ContatoController {
 
     //GET para puxar todos os usuarios favoritos
     @GetMapping(value = "/favoritos")
-    public ResponseEntity<List<Contato>> contatoTipo() {
-        List<Contato> favoritos = service.findByContatoTipo();
+    public ResponseEntity<List<Contato>> contatoTipoFavorito() {
+        List<Contato> favoritos = service.findByContatoTipoFavorito();
         return ResponseEntity.ok(favoritos);
+    }
+
+    //GET para puxar todos usuarios comuns
+    @GetMapping(value = "/comuns")
+    public ResponseEntity<List<Contato>> contatoTipoComum() {
+        List<Contato> comum = service.findByContatoTipoComum();
+        return ResponseEntity.ok(comum);
     }
 
     //POST para inserir contatos

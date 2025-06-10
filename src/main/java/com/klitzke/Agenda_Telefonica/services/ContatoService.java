@@ -25,8 +25,13 @@ public class ContatoService {
     }
 
     //Buscar pelo tipo de contato - favoritos
-    public List<Contato> findByContatoTipo() {
+    public List<Contato> findByContatoTipoFavorito() {
         return repositorio.findByContatoTipo(ContatoEnums.FAVORITO);
+    }
+
+    //Buscar pelo tipo de contato - comum
+    public  List<Contato> findByContatoTipoComum() {
+        return repositorio.findByContatoTipo(ContatoEnums.COMUM);
     }
 
     //Criar contato
