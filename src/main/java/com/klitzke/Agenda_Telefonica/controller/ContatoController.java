@@ -40,4 +40,12 @@ public class ContatoController {
         return ResponseEntity.created(uri).body(contato);
 
     }
+
+    //DELETE para deletar usuarios
+    @DeleteMapping(value = "/{id}")
+    public ResponseEntity<Void> deletarContato(@PathVariable Long id) {
+        service.deletar(id);
+        return ResponseEntity.noContent().build();
+    }
+
 }

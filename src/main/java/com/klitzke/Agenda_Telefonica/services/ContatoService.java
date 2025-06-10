@@ -2,6 +2,7 @@ package com.klitzke.Agenda_Telefonica.services;
 
 import com.klitzke.Agenda_Telefonica.entities.Contato;
 import com.klitzke.Agenda_Telefonica.repository.ContatoRepositorio;
+import com.klitzke.Agenda_Telefonica.services.exception.ContatoNotFoundException;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import java.util.List;
@@ -27,4 +28,11 @@ public class ContatoService {
         return repositorio.save(contato);
     }
 
+    //Deletar usuarios
+    public void deletar(Long id) {
+        if (!repositorio.existsById(id)) throw new ContatoNotFoundException(id);
+        repositorio.deleteById(id);
+    }
+
 }
+

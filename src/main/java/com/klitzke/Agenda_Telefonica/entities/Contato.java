@@ -1,5 +1,6 @@
 package com.klitzke.Agenda_Telefonica.entities;
 
+import com.klitzke.Agenda_Telefonica.enums.ContatoEnums;
 import lombok.*;
 import jakarta.persistence.*;
 import java.io.Serializable;
@@ -18,7 +19,12 @@ public class Contato implements Serializable {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
     private String nome;
+
+    @Column(unique = true)
     private String numero;
+
+    @Enumerated(EnumType.STRING)
+    private ContatoEnums contatoTipo;
 
     //Associações
 }
