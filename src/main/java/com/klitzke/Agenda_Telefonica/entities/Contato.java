@@ -20,11 +20,12 @@ public class Contato implements Serializable {
     private Long id;
     private String nome;
 
+    //Definindo que a coluna não aceita números repetidos
     @Column(unique = true)
     private String numero;
 
+    //Associações
     @Enumerated(EnumType.STRING)
     private ContatoEnums contatoTipo;
 
-    //Associações
 }

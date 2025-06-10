@@ -32,6 +32,13 @@ public class ContatoController {
         return ResponseEntity.ok().body(contato);
     }
 
+    //GET para puxar todos os usuarios favoritos
+    @GetMapping(value = "/favoritos")
+    public ResponseEntity<List<Contato>> contatoTipo() {
+        List<Contato> favoritos = service.findByContatoTipo();
+        return ResponseEntity.ok(favoritos);
+    }
+
     //POST para inserir contatos
     @PostMapping
     public ResponseEntity<Contato> criarContato(@RequestBody Contato contato) {

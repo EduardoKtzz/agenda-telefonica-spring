@@ -1,6 +1,7 @@
 package com.klitzke.Agenda_Telefonica.services;
 
 import com.klitzke.Agenda_Telefonica.entities.Contato;
+import com.klitzke.Agenda_Telefonica.enums.ContatoEnums;
 import com.klitzke.Agenda_Telefonica.repository.ContatoRepositorio;
 import com.klitzke.Agenda_Telefonica.services.exception.ContatoNotFoundException;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -21,6 +22,11 @@ public class ContatoService {
     //Buscar por "ID"
     public Contato encontrarPorId(Long id) {
         return repositorio.findById(id).orElseThrow(() -> new RuntimeException("Contato não encontrado"));
+    }
+
+    //Buscar pelo tipo de contato - favoritos
+    public List<Contato> findByContatoTipo() {
+        return repositorio.findByContatoTipo(ContatoEnums.FAVORITO);
     }
 
     //Criar contato
