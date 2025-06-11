@@ -21,7 +21,7 @@ public class ContatoService {
 
     //Buscar por "ID"
     public Contato encontrarPorId(Long id) {
-        return repositorio.findById(id).orElseThrow(() -> new RuntimeException("Contato não encontrado"));
+        return repositorio.findById(id).orElseThrow(() -> new ContatoNotFoundException(id));
     }
 
     //Buscar pelo tipo de contato - favoritos
