@@ -24,14 +24,9 @@ public class ContatoService {
         return repositorio.findById(id).orElseThrow(() -> new ContatoNotFoundException(id));
     }
 
-    //Buscar pelo tipo de contato - favoritos
-    public List<Contato> findByContatoTipoFavorito() {
-        return repositorio.findByContatoTipo(ContatoEnums.FAVORITO);
-    }
-
-    //Buscar pelo tipo de contato - comum
-    public  List<Contato> findByContatoTipoComum() {
-        return repositorio.findByContatoTipo(ContatoEnums.COMUM);
+    //Buscar pelo tipo de contato - (Comum ou favorito)
+    public List<Contato> findByContatoTipo(ContatoEnums tipo) {
+        return repositorio.findByContatoTipo(tipo);
     }
 
     //Criar contato

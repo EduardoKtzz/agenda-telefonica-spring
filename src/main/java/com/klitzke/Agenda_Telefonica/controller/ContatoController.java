@@ -1,6 +1,7 @@
 package com.klitzke.Agenda_Telefonica.controller;
 
 import com.klitzke.Agenda_Telefonica.entities.Contato;
+import com.klitzke.Agenda_Telefonica.enums.ContatoEnums;
 import com.klitzke.Agenda_Telefonica.services.ContatoService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
@@ -32,18 +33,11 @@ public class ContatoController {
         return ResponseEntity.ok().body(contato);
     }
 
-    //GET para puxar todos os usuarios favoritos
-    @GetMapping(value = "/favoritos")
-    public ResponseEntity<List<Contato>> contatoTipoFavorito() {
-        List<Contato> favoritos = service.findByContatoTipoFavorito();
-        return ResponseEntity.ok(favoritos);
-    }
-
-    //GET para puxar todos usuarios comuns
-    @GetMapping(value = "/comuns")
-    public ResponseEntity<List<Contato>> contatoTipoComum() {
-        List<Contato> comum = service.findByContatoTipoComum();
-        return ResponseEntity.ok(comum);
+    //GET para puxar os usuarios com base no tipo deles, podendo ser comum ou favorito
+    @GetMapping(value = "/tipo/{tipo}")
+    public ResponseEntity<List<Contato>> contatoTipo(@PathVariable ContatoEnums tipo) {
+        List<Contato> lista = service.findByContatoTipo(tipo);
+        return ResponseEntity.ok(lista);
     }
 
     //POST para inserir contatos
