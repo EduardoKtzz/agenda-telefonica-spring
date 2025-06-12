@@ -24,7 +24,7 @@ public class GlobalExceptionHandler {
 
         String mensagem = String.format("Valor inválido '%s' para o parâmetro '%s'. Os valores aceitos são: FAVORITO, COMUM.", valor, campo);
 
-        ErrorResponse erro1 = new ErrorResponse(HttpStatus.BAD_REQUEST.value(), "Requição invalida, tente novamente!", exception.getMessage(), request.getRequestURI());
+        ErrorResponse erro1 = new ErrorResponse(HttpStatus.BAD_REQUEST.value(), "Parâmetro inválido", mensagem, request.getRequestURI());
         return ResponseEntity.status(HttpStatus.BAD_REQUEST).body(erro1);
     }
 }
