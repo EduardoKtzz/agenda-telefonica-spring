@@ -2,8 +2,10 @@ package com.klitzke.Agenda_Telefonica.exception;
 
 import com.klitzke.Agenda_Telefonica.services.exception.ContatoNotFoundException;
 import jakarta.servlet.http.HttpServletRequest;
+import org.springframework.dao.DataIntegrityViolationException;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
+import org.springframework.web.HttpRequestMethodNotSupportedException;
 import org.springframework.web.bind.annotation.ExceptionHandler;
 import org.springframework.web.bind.annotation.RestControllerAdvice;
 import org.springframework.web.method.annotation.MethodArgumentTypeMismatchException;
@@ -36,6 +38,15 @@ public class GlobalExceptionHandler {
 
         ErrorResponse erro = new ErrorResponse(HttpStatus.BAD_REQUEST.value(), "Parâmetro inválido", mensagem, request.getRequestURI());
         return ResponseEntity.status(HttpStatus.BAD_REQUEST).body(erro);
+    }
+
+    @ExceptionHandler(DataIntegrityViolationException.class)
+    public ResponseEntity<ErrorResponse> usuarioRepetido(DataIntegrityViolationException exception, HttpServletRequest request) {
+
+        String menssagem = "Dados repetidos, verifique se esse usuario já existe.";
+
+        ErrorResponse erro = new ErrorResponse(HttpStatus.CONFLICT.value(), "Número de telefone repetido.", menssagem, request.getRequestURI());
+        return ResponseEntity.status(HttpStatus.CONFLICT).body(erro);
     }
 
 }
