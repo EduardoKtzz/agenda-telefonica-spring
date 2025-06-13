@@ -7,6 +7,7 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.ExceptionHandler;
 import org.springframework.web.bind.annotation.RestControllerAdvice;
 import org.springframework.web.method.annotation.MethodArgumentTypeMismatchException;
+import org.springframework.web.servlet.resource.NoResourceFoundException;
 
 @RestControllerAdvice
 public class GlobalExceptionHandler {
@@ -27,4 +28,14 @@ public class GlobalExceptionHandler {
         ErrorResponse erro1 = new ErrorResponse(HttpStatus.BAD_REQUEST.value(), "Parâmetro inválido", mensagem, request.getRequestURI());
         return ResponseEntity.status(HttpStatus.BAD_REQUEST).body(erro1);
     }
+
+    @ExceptionHandler(NoResourceFoundException.class)
+        public ResponseEntity<ErrorResponse> parametroInvalido(NoResourceFoundException exception, HttpServletRequest request) {
+
+        String mensagem = exception.getMessage();
+
+        ErrorResponse erro = new ErrorResponse(HttpStatus.BAD_REQUEST.value(), "Parâmetro inválido", mensagem, request.getRequestURI());
+        return ResponseEntity.status(HttpStatus.BAD_REQUEST).body(erro);
+    }
+
 }
