@@ -49,4 +49,13 @@ public class GlobalExceptionHandler {
         return ResponseEntity.status(HttpStatus.CONFLICT).body(erro);
     }
 
+    @ExceptionHandler(HttpRequestMethodNotSupportedException.class)
+    public ResponseEntity<ErrorResponse> caminhoPostInvalido(HttpRequestMethodNotSupportedException exception, HttpServletRequest request) {
+
+        String menssagem = "Caminho inválido, para inserir vá para /contatos";
+
+        ErrorResponse erro = new ErrorResponse(HttpStatus.METHOD_NOT_ALLOWED.value(), "Requisição errada.", menssagem, request.getRequestURI());
+        return ResponseEntity.status(HttpStatus.METHOD_NOT_ALLOWED).body(erro);
+    }
+
 }
